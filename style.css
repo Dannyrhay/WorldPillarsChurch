@@ -26,6 +26,13 @@ html {
     scroll-behavior: smooth; 
 }
 
+img {
+    max-width: 100%;
+    height: auto; /* This is key for maintaining aspect ratio */
+    display: block;
+    border-radius: 5px;
+}
+
 body {
     margin: 0;
     font-family: var(--font-family);
