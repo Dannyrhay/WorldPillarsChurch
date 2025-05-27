@@ -1,4 +1,8 @@
 /* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+}
 :root {
     --primary-color-purple: #5D3A9B; 
     --primary-color-deep-purple: #4A00E0; 
@@ -1270,8 +1274,11 @@ footer {
     .menu-toggle { display: block !important; } 
 }
 
-@media (max-width: 768px) { /* Mobile specific */
+@media (max-width: 668px) { /* Mobile specific */
     /* Mobile Menu Styling */
+    .html p{
+        font-size: 1em;
+    }
     .nav-links { 
         display: none; 
         flex-direction: column; 
@@ -1346,8 +1353,8 @@ footer {
     }
     .original-header .menu-toggle { 
         position: fixed; 
-        top: 15px; 
-        right: 15px; 
+        top: 10px; 
+        right: 2px; 
         z-index: 1002; 
     }
      .original-header .menu-toggle i.fa-times {
@@ -1438,8 +1445,11 @@ footer {
     }
 }
 
-@media (max-width: 480px) {
-    .container { width: 95%; }
+@media (max-width: 250px) {
+
+    .logo-container p { font-size: 0.2em; }
+
+    .container { width: 100%; }
     h1 { font-size: 2em; } 
     .new-hero-section.hero-slider-active .new-hero-content h1 { font-size: 1.7em; } 
     .page-banner h1 { font-size: 1.8em; } 
@@ -1449,7 +1459,8 @@ footer {
     
     .hero-slide-subtitle { font-size: 0.9em; }
     .btn-hero { width: 80%; }
-
+    
+    
 
     .program-slide.active { flex-direction: column; }
     .program-card { min-width: 100%; margin-bottom: 15px; }
