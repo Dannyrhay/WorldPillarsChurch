@@ -1,0 +1,1457 @@
+/* General Styles */
+:root {
+    --primary-color-purple: #5D3A9B; 
+    --primary-color-deep-purple: #4A00E0; 
+    --secondary-color-orange: #FFA500; 
+    --secondary-color-gold: #FFD700; 
+    --background-light: #FDF8F0; 
+    --background-medium: #F0E6D2; 
+    --text-dark: #333333;
+    --text-light: #FFFFFF;
+    --text-medium: #555555;
+    --footer-bg: #000000;
+    --border-color: #ddd;
+    --font-family: 'Arial', sans-serif; 
+    --homepage-hero-text: #FFFFFF;
+    --homepage-hero-highlight: #FFD700; 
+    --homepage-button-outline: #FFFFFF;
+    --mobile-menu-link-hover-underline: var(--homepage-hero-highlight);
+}
+
+html {
+    scroll-behavior: smooth; 
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-family);
+    color: var(--text-dark);
+    line-height: 1.6;
+    background-color: var(--background-light);
+    overflow-x: hidden; 
+}
+body.mobile-menu-active {
+    overflow: hidden; 
+}
+
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+h1, h2, h3, h4, h5 {
+    margin-top: 0;
+    line-height: 1.2;
+}
+
+h1 { font-size: 2.8em; }
+h2 { font-size: 2em; color: var(--primary-color-purple); }
+h3 { font-size: 1.5em; color: var(--primary-color-deep-purple); }
+h4 { font-size: 1.1em; }
+h5 { font-size: 1em; }
+
+
+a {
+    text-decoration: none;
+    color: var(--secondary-color-orange);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 5px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: var(--secondary-color-orange);
+    color: var(--text-light);
+}
+.btn-primary:hover {
+    background-color: #e69500; 
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color-orange);
+    color: var(--text-light);
+    border: 1px solid var(--secondary-color-orange);
+}
+.btn-secondary:hover {
+    background-color: #e69500;
+    border-color: #e69500;
+}
+
+.btn-tertiary {
+    background-color: var(--secondary-color-gold);
+    color: var(--text-dark);
+    padding: 8px 15px;
+    font-size: 0.9em;
+}
+.btn-tertiary:hover {
+    background-color: #e6c200; 
+}
+.btn-small {
+    padding: 6px 12px;
+    font-size: 0.8em;
+}
+
+
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+    padding-bottom: 10px;
+    font-size: 2em; 
+    color: var(--primary-color-purple);
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: var(--secondary-color-orange);
+    margin: 8px auto 0;
+}
+
+/* --- Homepage Header Styles (Transparent, Absolute Positioned, Not Sticky) --- */
+header.homepage-header { 
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: transparent; 
+    padding: 20px 0; 
+    z-index: 999; 
+    box-sizing: border-box;
+}
+
+.homepage-header .header-container {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+}
+.homepage-header .logo-container { 
+    display: flex;
+    align-items: center;
+    position: relative; 
+    z-index: 1003; 
+}
+.homepage-header .logo { 
+    height: 45px; 
+    margin-right: 10px; 
+    border-radius: 0; 
+    border: none; 
+}
+.homepage-header .logo-worldpillars {
+    height: 55px; 
+}
+.homepage-header nav {
+    /* Nav element itself */
+}
+/* Desktop Navigation Links for Homepage */
+.homepage-header .nav-links.homepage-nav-links { 
+    list-style: none;
+    display: flex; /* Ensures nav links are shown on desktop */
+    margin: 0;
+    padding: 0;
+}
+.homepage-header .nav-links.homepage-nav-links li {
+    margin-left: 30px; 
+}
+.homepage-header .nav-links.homepage-nav-links a {
+    color: var(--text-light); 
+    font-weight: bold; 
+    padding: 8px 0; 
+    position: relative;
+    text-transform: uppercase; 
+    font-size: 0.95em; 
+    transition: color 0.3s ease;
+    text-decoration: none; 
+}
+.homepage-header .nav-links.homepage-nav-links a .link-text { 
+    position: relative;
+    display: inline-block; /* Important for ::after to be relative to text width */
+}
+/* Underline for desktop homepage nav links - SWIPE EFFECT */
+.homepage-header .nav-links.homepage-nav-links a .link-text::after { 
+    content: '';
+    position: absolute;
+    width: 100%; /* Takes width of the span.link-text */
+    transform: scaleX(0); /* Initially hidden */
+    height: 2px;
+    bottom: -4px; /* Position below the text */
+    left: 0;
+    background-color: var(--homepage-hero-highlight);
+    transform-origin: bottom right; /* Animation starts from the right */
+    transition: transform 0.3s ease-out; 
+}
+.homepage-header .nav-links.homepage-nav-links a:hover .link-text::after {
+    transform: scaleX(1); /* Animate to full width */
+    transform-origin: bottom left; /* Animation ends at the left, creating swipe */
+}
+.homepage-header .nav-links.homepage-nav-links a:hover,
+.homepage-header .nav-links.homepage-nav-links a.active {
+    color: var(--homepage-hero-highlight); 
+}
+/* Active link also gets the underline, styled consistently with hover */
+.homepage-header .nav-links.homepage-nav-links a.active .link-text::after {
+    transform: scaleX(1);
+    transform-origin: bottom left; 
+    background-color: var(--homepage-hero-highlight); 
+}
+.homepage-header .nav-links.homepage-nav-links .dropdown-icon { 
+    font-size: 0.7em;
+    margin-left: 5px;
+    color: var(--text-light); 
+    transition: color 0.3s ease;
+}
+.homepage-header .nav-links.homepage-nav-links a:hover .dropdown-icon,
+.homepage-header .nav-links.homepage-nav-links a.active .dropdown-icon {
+    color: var(--homepage-hero-highlight); 
+}
+
+/* --- Original Header Styles (For About, Ministry pages, etc.) --- */
+header.original-header {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 10px 0;
+    position: sticky; 
+    top: 0;
+    z-index: 1000; 
+    border-bottom: 3px solid var(--background-medium);
+}
+.original-header .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative; 
+}
+.original-header .logo-container {
+    display: flex;
+    align-items: center;
+    position: relative; 
+    z-index: 1003; 
+}
+.original-header .logo {
+    height: 50px; 
+    margin-right: 10px;
+}
+.original-header .logo-worldpillars {
+    height: 60px; 
+}
+/* Desktop Navigation Links for Original Header */
+.original-header .nav-links.original-nav-links {
+    list-style: none;
+    display: flex; 
+    margin: 0;
+    padding: 0;
+}
+.original-header .nav-links.original-nav-links li {
+    margin-left: 25px;
+}
+.original-header .nav-links.original-nav-links a {
+    color: var(--text-dark);
+    font-weight: bold;
+    padding: 5px 0;
+    position: relative;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    text-decoration: none;
+}
+.original-header .nav-links.original-nav-links a .link-text { 
+    position: relative;
+    display: inline-block;
+}
+.original-header .nav-links.original-nav-links a:hover, 
+.original-header .nav-links.original-nav-links a.active {
+    color: var(--secondary-color-orange);
+}
+.original-header .nav-links.original-nav-links a.active {
+     border-bottom: 2px solid var(--secondary-color-orange); 
+}
+.original-header .nav-links.original-nav-links .dropdown-icon {
+    font-size: 0.7em;
+    margin-left: 5px;
+    color: var(--text-dark);
+}
+.original-header .nav-links.original-nav-links a:hover .dropdown-icon,
+.original-header .nav-links.original-nav-links a.active .dropdown-icon {
+    color: var(--secondary-color-orange);
+}
+
+
+/* --- New Hero Section with SLIDER functionality --- */
+.new-hero-section.hero-slider-active { 
+    position: relative;
+    height: 100vh; 
+    width: 100%; 
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--homepage-hero-text);
+    overflow: hidden; 
+    box-sizing: border-box; 
+}
+.hero-slides-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.hero-slide-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    z-index: 1; 
+}
+.hero-slide-item.active {
+    opacity: 1;
+    z-index: 2; 
+}
+.hero-slide-item .hero-overlay { 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.65); 
+    z-index: 3; 
+}
+.hero-slide-item .new-hero-content { 
+    position: relative; 
+    z-index: 4; 
+    padding: 20px;
+    max-width: 800px; 
+}
+.hero-slide-item .new-hero-content h1 {
+    font-size: 3.2em; 
+    font-weight: bold;
+    margin-bottom: 20px; 
+    line-height: 1.3;
+    color: var(--homepage-hero-text); 
+    text-transform: uppercase;
+}
+.hero-slide-item .new-hero-content .highlight-yellow {
+    color: var(--homepage-hero-highlight);
+}
+.hero-slide-subtitle { 
+    font-size: 1.2em;
+    margin-bottom: 25px;
+    color: rgba(255,255,255,0.9);
+}
+.hero-slide-item .hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px; 
+    flex-wrap: wrap; 
+}
+.btn-hero { 
+    padding: 12px 30px; 
+    font-size: 1em;
+    border-radius: 5px; 
+    min-width: 180px; 
+}
+.btn-yellow {
+    background-color: var(--homepage-hero-highlight);
+    color: var(--text-dark); 
+    border: 2px solid var(--homepage-hero-highlight);
+}
+.btn-yellow:hover {
+    background-color: #e6c200; 
+    border-color: #e6c200;
+    color: var(--text-dark);
+}
+.btn-outline {
+    background-color: transparent;
+    color: var(--homepage-button-outline);
+    border: 2px solid var(--homepage-button-outline);
+}
+.btn-outline:hover {
+    background-color: var(--homepage-button-outline);
+    color: var(--text-dark); 
+}
+.hero-slider-active .slider-nav { 
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.3); 
+    color: white;
+    border: none;
+    padding: 12px; 
+    cursor: pointer;
+    z-index: 5; 
+    font-size: 1.8em; 
+    border-radius: 50%;
+    width: 45px; 
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+.hero-slider-active .slider-nav:hover {
+    background-color: rgba(0,0,0,0.6);
+}
+.hero-slider-active .hero-slider-nav-prev { left: 25px; } 
+.hero-slider-active .hero-slider-nav-next { right: 25px; }
+
+.hero-slider-active .hero-slider-dots { 
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    z-index: 5; 
+}
+.hero-slider-active .hero-slider-dots .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.4); 
+    margin: 0 6px; 
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.hero-slider-active .hero-slider-dots .dot.active {
+    background-color: var(--homepage-hero-highlight); 
+    transform: scale(1.2);
+}
+
+.menu-toggle { 
+    display: none; 
+    background: none;
+    border: none;
+    font-size: 1.8em; 
+    cursor: pointer;
+    padding: 10px; 
+    z-index: 1002; 
+    position: relative; 
+    line-height: 1; 
+}
+.homepage-header .menu-toggle {
+    color: var(--text-light); 
+}
+.original-header .menu-toggle {
+    color: var(--text-dark);
+}
+.original-header .menu-toggle i.fa-times { 
+    color: var(--text-dark) !important; 
+}
+.homepage-header .menu-toggle i.fa-times { 
+    color: var(--text-light) !important; 
+}
+
+/* --- Page Banner (Shared by About, Ministry, Contact etc.) --- */
+.page-banner {
+    padding: 60px 0; 
+    text-align: center;
+    position: relative; 
+    color: var(--text-light); 
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 300px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.page-banner.about-banner { 
+    background-image: url('./images/About us.jpg');
+}
+.page-banner.ministry-banner { 
+    background-image: url('./images/sermon2.jpg');
+}
+.page-banner.contact-banner { 
+    background-image: url('./images/Contact us.jpg'); 
+}
+.page-banner.sermon-banner { 
+    background-image: url('./images/sermon1.jpg');
+}
+.page-banner::before { 
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.55); 
+    z-index: 1;
+}
+.page-banner .container { 
+    position: relative;
+    z-index: 2;
+}
+.page-banner h1 {
+    font-size: 3em; 
+    color: var(--text-light); 
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3); 
+}
+.page-banner p {
+    font-size: 1.2em;
+    color: rgba(255, 255, 255, 0.9); 
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* --- Sermon Page Specific Styles --- */
+.sermon-main-content {
+    padding: 60px 0;
+    background-color: #fff; 
+}
+.sermon-container-grid {
+    display: grid;
+    grid-template-columns: 2.5fr 1fr; 
+    gap: 40px;
+}
+.sermon-video-area .video-player-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; 
+    height: 0;
+    overflow: hidden;
+    margin-bottom: 30px;
+    background-color: #000; 
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.sermon-video-area .video-player-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none; 
+}
+.sermon-description h2 {
+    font-size: 1.8em;
+    color: var(--primary-color-deep-purple);
+    margin-bottom: 10px;
+}
+.sermon-description .sermon-meta {
+    font-size: 0.9em;
+    color: var(--text-medium);
+    margin-bottom: 20px;
+}
+.sermon-description p {
+    margin-bottom: 15px;
+    line-height: 1.7;
+}
+.sermon-blockquote { 
+    border-left: 4px solid var(--secondary-color-orange);
+    padding-left: 20px;
+    margin: 30px 0 30px 20px; 
+    font-style: italic;
+    font-size: 1.1em;
+    color: var(--text-medium);
+}
+.recent-sermons-sidebar .sermon-placeholder-img { 
+    width: 100%;
+    height: 148px; 
+    background-color: var(--background-medium); 
+    border-radius: 5px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-medium);
+    font-size: 0.9em;
+    border: 1px dashed var(--border-color);
+}
+
+
+/* --- Contact Form Section --- */
+.contact-form-section {
+    padding: 60px 0;
+    background-color: #fff; 
+}
+.contact-form-container {
+    max-width: 700px; 
+    margin: 0 auto; 
+    padding: 30px;
+    background-color: var(--background-light); 
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.contact-form-container .section-title {
+    margin-bottom: 30px;
+}
+.form-group {
+    margin-bottom: 20px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--text-dark);
+}
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box; 
+    transition: border-color 0.3s ease;
+}
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="tel"]:focus,
+.form-group textarea:focus {
+    border-color: var(--secondary-color-orange);
+    outline: none;
+}
+.form-group textarea {
+    resize: vertical; 
+    min-height: 120px;
+}
+.btn-submit-message {
+    display: block; 
+    width: auto; 
+    margin: 20px auto 0; 
+    padding: 12px 30px;
+}
+
+/* --- Map Section --- */
+.map-section {
+    padding: 0; 
+    background-color: var(--background-medium); 
+}
+.map-placeholder iframe {
+    display: block; 
+    width: 100%;
+    height: 450px; 
+    border: none; 
+}
+
+
+/* Bible Quotes Slider Section (Homepage Specific - Fixed Background) */
+.bible-quotes-slider-section {
+    padding: 80px 0; 
+    text-align: center;
+    position: relative; 
+    background-image: url('./images/bible quote1.jpg'); 
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: var(--text-light); 
+}
+.bible-quotes-slider-section::before { 
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6); 
+    z-index: 1;
+}
+.bible-quotes-slider-section .container { 
+    position: relative;
+    z-index: 2;
+}
+.bible-quotes-slider-section .section-title {
+    color: var(--text-light); 
+}
+.bible-quotes-slider-section .section-title::after {
+    background-color: var(--homepage-hero-highlight); 
+}
+.quotes-slider {
+    position: relative;
+    overflow: hidden;
+    min-height: 150px; 
+    max-width: 800px;
+    margin: 0 auto;
+}
+.quote-slide {
+    opacity: 0;
+    position: absolute;
+    top:0; left:0; right:0;
+    transition: opacity 0.7s ease-in-out;
+    padding: 20px;
+}
+.quote-slide.active {
+    opacity: 1;
+    position: relative; 
+}
+.quote-mark {
+    font-size: 3em;
+    color: var(--homepage-hero-highlight); 
+    line-height: 1;
+}
+.open-quote { text-align: left; margin-bottom: -10px;}
+.close-quote { text-align: right; margin-top: -10px;}
+
+.quote-text {
+    font-size: 1.4em; 
+    font-style: italic;
+    color: var(--text-light); 
+    margin: 15px 0;
+    line-height: 1.5;
+}
+.quote-reference {
+    font-weight: bold;
+    color: var(--homepage-hero-highlight); 
+    font-size: 1.1em;
+}
+.quotes-slider-dots {
+    text-align: center;
+    margin-top: 25px;
+}
+.quotes-slider-dots .dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5); 
+    opacity: 0.7;
+    margin: 0 5px;
+    cursor: pointer;
+}
+.quotes-slider-dots .dot.active {
+    background-color: var(--homepage-hero-highlight); 
+    opacity: 1;
+}
+
+/* ... (Rest of the CSS for other sections: Upcoming Event, Programs, Our Ministries, etc. remains the same) ... */
+/* Upcoming Event Section (Existing) */
+.upcoming-event-section {
+    padding: 60px 0;
+    background-color: #fff; 
+}
+.upcoming-event-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+.upcoming-event-header .sub-heading {
+    color: var(--text-medium);
+    font-size: 0.9em;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+.upcoming-event-header h2 {
+    color: var(--primary-color-purple);
+    margin:0;
+    font-size: 1.8em; 
+}
+.event-highlights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+.event-card {
+    background-color: var(--background-light);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+.event-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+.event-card h3 {
+    margin-bottom: 10px;
+    font-size: 1.3em; 
+}
+.event-card p {
+    font-size: 0.95em;
+    color: var(--text-medium);
+    margin-bottom: 15px;
+}
+.details-link {
+    font-weight: bold;
+    color: var(--secondary-color-orange);
+}
+.details-link:hover {
+    text-decoration: underline;
+}
+
+/* Programs & Events Slider Section (Existing) */
+.programs-events-slider-section {
+    padding: 60px 0;
+    background-color: var(--background-medium);
+    position: relative;
+}
+.programs-slider {
+    overflow: hidden;
+    position: relative;
+}
+.program-slide {
+    display: none; 
+    gap: 20px; 
+}
+.program-slide.active {
+    display: flex; 
+}
+.program-card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    min-width: 250px; 
+    flex: 1; 
+}
+.program-card h4 {
+    color: var(--primary-color-purple);
+    margin-bottom: 8px;
+    font-size: 1.2em;
+}
+.program-card .program-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.program-card .program-time {
+    font-size: 0.9em;
+    color: var(--text-medium);
+    margin-bottom: 15px;
+}
+.programs-slider-dots {
+    text-align: center;
+    margin-top: 20px;
+}
+.programs-slider-dots .dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--primary-color-purple);
+    opacity: 0.5;
+    margin: 0 5px;
+    cursor: pointer;
+}
+.programs-slider-dots .dot.active {
+    opacity: 1;
+}
+.programs-slider-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255,255,255,0.8);
+    border: 1px solid var(--border-color);
+    color: var(--text-dark);
+    padding: 10px;
+    cursor: pointer;
+    z-index: 2;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.programs-slider-nav.programs-prev { left: 10px; }
+.programs-slider-nav.programs-next { right: 10px; }
+
+/* Our Ministries Section (Existing & Reused) */
+.our-ministries-section { 
+    padding: 60px 0;
+    background-color: var(--background-light);
+}
+.related-ministries-section { 
+    background-color: var(--background-medium); 
+}
+.ministry-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+.ministry-card { 
+    background-color: #fff; 
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+.ministry-card img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+.ministry-card h3 {
+    margin-bottom: 10px;
+    font-size: 1.3em;
+}
+.ministry-card p {
+    font-size: 0.95em;
+    color: var(--text-medium);
+    margin-bottom: 15px;
+    min-height: 60px; 
+}
+
+/* Newsletter Section (Shared) */
+.newsletter-section {
+    background-color: var(--primary-color-purple);
+    color: var(--text-light);
+    padding: 40px 0;
+}
+.newsletter-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.newsletter-text h3 {
+    margin-bottom: 5px;
+    font-size: 1.8em;
+    color: var(--text-light);
+}
+.newsletter-text p {
+    margin:0;
+    font-size: 1.1em;
+}
+.newsletter-form {
+    display: flex;
+    gap: 10px;
+    flex-grow: 1;
+    max-width: 500px;
+}
+.newsletter-form input[type="email"] {
+    flex-grow: 1;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1em;
+}
+.newsletter-form .btn {
+    white-space: nowrap; 
+}
+
+/* Footer (Shared) */
+footer {
+    background-color: var(--footer-bg);
+    color: #ccc;
+    padding: 50px 0 0;
+}
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 30px;
+}
+.footer-col h4 {
+    color: var(--text-light);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-size: 1em;
+    position: relative;
+    padding-bottom: 8px;
+}
+.footer-col h4::after {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 2px;
+    background-color: var(--secondary-color-orange);
+    margin-top: 5px;
+}
+.footer-col p, .footer-col li {
+    font-size: 0.9em;
+    margin-bottom: 8px;
+    color: #aaa;
+}
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+}
+.footer-col a {
+    color: #aaa;
+    transition: color 0.3s ease;
+}
+.footer-col a:hover {
+    color: var(--secondary-color-orange);
+}
+.social-links a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: rgba(255,255,255,0.1);
+    color: var(--text-light);
+    margin-right: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.social-links a:hover {
+    background-color: var(--secondary-color-orange);
+    transform: translateY(-2px);
+}
+.copyright {
+    text-align: center;
+    padding: 20px 0;
+    border-top: 1px solid #444;
+    font-size: 0.85em;
+    color: #888;
+}
+.copyright p { margin: 0; }
+
+
+/* --- About Page Specific Styles --- */
+.about-main-content {
+    padding: 60px 0;
+    background-color: #fff; 
+}
+.about-container-grid { 
+    display: grid;
+    grid-template-columns: 2fr 1fr; 
+    gap: 40px;
+}
+.about-text-content h2 { 
+    font-size: 1.8em;
+    color: var(--primary-color-deep-purple);
+    margin-bottom: 15px;
+}
+.about-text-content h3 { 
+    font-size: 1.6em;
+    color: var(--primary-color-deep-purple);
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+.about-text-content p {
+    margin-bottom: 15px;
+    line-height: 1.7;
+    color: var(--text-medium);
+}
+
+/* Sidebar (Common structure for About & Ministry) */
+.sidebar {
+    background-color: var(--background-light);
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+.sidebar-widget {
+    margin-bottom: 30px;
+}
+.sidebar-widget:last-child {
+    margin-bottom: 0;
+}
+.sidebar-widget h4 { 
+    font-size: 1.2em;
+    text-transform: uppercase;
+    color: var(--primary-color-purple);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--secondary-color-orange);
+}
+.sermon-placeholder-img { 
+    width: 100%;
+    height: 148px; 
+    background-color: #e0e0e0; 
+    border-radius: 5px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    font-size: 0.9em;
+    border: 1px dashed #ccc;
+}
+.sidebar .sermon-item {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed var(--border-color);
+}
+.sidebar .sermon-item:last-of-type { 
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+.sidebar .sermon-info .sermon-title-link {
+    display: block; 
+    font-weight: bold;
+    color: var(--text-dark);
+    margin-bottom: 5px;
+    font-size: 1em;
+    transition: color 0.3s ease;
+}
+.sidebar .sermon-info .sermon-title-link:hover {
+    color: var(--secondary-color-orange);
+}
+.sidebar .sermon-info .sermon-title-link i {
+    margin-right: 8px;
+    color: var(--secondary-color-orange);
+}
+.sidebar .sermon-info .sermon-duration {
+    font-size: 0.85em;
+    color: var(--text-medium);
+    padding-left: 23px; 
+}
+
+/* Our Team Section (About Page) */
+.our-team-section {
+    padding: 60px 0;
+    background-color: var(--background-medium); 
+}
+.team-members-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+.team-member-card { 
+    text-align: center;
+    background-color: #fff; 
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.team-member-card img {
+    width: 100%; 
+    height: 200px; 
+    object-fit: cover;
+    border-radius: 8px; 
+    margin-bottom: 20px;
+    border: 3px solid var(--background-light); 
+}
+.team-member-card h3 {
+    font-size: 1.4em; 
+    color: var(--primary-color-deep-purple);
+    margin-bottom: 10px;
+}
+.team-member-card p {
+    font-size: 0.9em;
+    color: var(--text-medium);
+    margin-bottom: 15px;
+    min-height: 70px; 
+}
+.team-member-card .social-links-team a {
+    color: var(--primary-color-purple);
+    margin: 0 8px;
+    font-size: 0.9em;
+    text-transform: capitalize;
+    transition: color 0.3s ease;
+}
+.team-member-card .social-links-team a:hover {
+    color: var(--secondary-color-orange);
+    text-decoration: underline;
+}
+
+/* --- Ministry Page Specific Styles --- */
+.ministry-main-content {
+    padding: 60px 0;
+    background-color: #fff; 
+}
+.ministry-container-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr; 
+    gap: 40px;
+}
+.ministry-article-content .main-ministry-image {
+    width: 100%;
+    height: auto; 
+    max-height: 600px; 
+    object-fit: cover;
+    margin-bottom: 30px;
+    border-radius: 8px;
+}
+.ministry-article-content p {
+    margin-bottom: 15px;
+    line-height: 1.7;
+    color: var(--text-medium);
+}
+.ministry-article-content h2 { 
+    font-size: 1.8em;
+    color: var(--primary-color-deep-purple);
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+.ministry-blockquote {
+    border-left: 4px solid var(--secondary-color-orange);
+    padding-left: 20px;
+    margin: 30px 0 30px 20px; 
+    font-style: italic;
+    font-size: 1.1em;
+    color: var(--text-medium);
+}
+.ministry-sidebar .upcoming-event-item {
+    background-color: #fff; 
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    border: 1px solid var(--border-color);
+}
+.ministry-sidebar .upcoming-event-item:last-child {
+    margin-bottom: 0;
+}
+.ministry-sidebar .event-date-badge {
+    background-color: var(--primary-color-purple);
+    color: var(--text-light);
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.85em;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+.ministry-sidebar .upcoming-event-item h5 {
+    font-size: 1.05em;
+    color: var(--text-dark);
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.ministry-sidebar .upcoming-event-item .event-time {
+    font-size: 0.9em;
+    color: var(--text-medium);
+    margin-bottom: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) { /* Tablet and smaller */
+    .event-highlights, .ministry-cards, .team-members-grid { 
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    .program-card {
+        min-width: 220px;
+    }
+    .about-container-grid, .ministry-container-grid, .sermon-container-grid { 
+        grid-template-columns: 1fr; 
+    }
+    .sidebar { 
+        margin-top: 40px; 
+    }
+    .sermon-video-area { 
+        margin-bottom: 30px;
+    }
+
+    .new-hero-section.hero-slider-active .new-hero-content h1 { 
+        font-size: 2.5em; 
+    }
+    .hero-slide-subtitle { font-size: 1.1em; }
+    .btn-hero { 
+        padding: 10px 22px;
+        font-size: 0.9em;
+    }
+    
+    /* Hide desktop nav links, show hamburger */
+    .homepage-header .nav-links.homepage-nav-links,
+    .original-header .nav-links.original-nav-links {
+        display: none; 
+    }
+    .menu-toggle { display: block !important; } 
+}
+
+@media (max-width: 768px) { /* Mobile specific */
+    /* Mobile Menu Styling */
+    .nav-links { 
+        display: none; 
+        flex-direction: column; 
+        width: 100%;
+        position: fixed; 
+        left: 0;
+        top: 0; 
+        height: 100vh; 
+        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        z-index: 1001; 
+        padding-top: 0; 
+        box-sizing: border-box;
+        overflow-y: auto; 
+        justify-content: center; 
+        align-items: center; 
+    }
+    .nav-links.active { display: flex !important; } 
+
+    /* Homepage Mobile Menu (Dark overlay) */
+    .homepage-header .nav-links.active { 
+        background-color: rgba(20, 20, 20, 0.98); 
+    }
+    .homepage-header .menu-toggle { 
+        position: fixed; 
+        top: 20px; 
+        right: 20px; 
+        z-index: 1002; 
+    }
+    .homepage-header .nav-links li {
+        margin: 15px 0; 
+        width: auto; 
+        text-align: center; 
+        border-bottom: none; 
+    }
+    .homepage-header .nav-links li:first-child { border-top: none; }
+    .homepage-header .nav-links a {
+        display: inline-block; 
+        padding: 10px 0; 
+        color: var(--text-light); text-transform: uppercase; font-size: 1.25em; 
+        position: relative; 
+        margin-bottom: 0; 
+    }
+     .homepage-header .nav-links a .link-text::after { 
+        content: '';
+        position: absolute;
+        width: 100%; 
+        transform: scaleX(0);
+        height: 2px;
+        bottom: -4px; 
+        left: 0;
+        background-color: var(--mobile-menu-link-hover-underline);
+        transform-origin: center; 
+        transition: transform 0.3s ease-out;
+    }
+    .homepage-header .nav-links a:hover .link-text::after,
+    .homepage-header .nav-links a.active .link-text::after {
+        transform: scaleX(1);
+    }
+    .homepage-header .nav-links a:hover, 
+    .homepage-header .nav-links a.active {
+        color: var(--homepage-hero-highlight); 
+        background-color: transparent; 
+    }
+    .homepage-header .nav-links a:hover .dropdown-icon,
+    .homepage-header .nav-links a.active .dropdown-icon {
+        color: var(--homepage-hero-highlight);
+    }
+
+    /* Original Pages Mobile Menu (Light overlay) */
+    .original-header .nav-links.active { 
+        background-color: rgba(255, 255, 255, 0.99); 
+    }
+    .original-header .menu-toggle { 
+        position: fixed; 
+        top: 15px; 
+        right: 15px; 
+        z-index: 1002; 
+    }
+     .original-header .menu-toggle i.fa-times {
+        color: var(--text-dark); 
+    }
+    .original-header .nav-links li {
+        margin: 15px 0; 
+        width: auto;
+        text-align: center; 
+        border-bottom: none; 
+    }
+    .original-header .nav-links li:first-child { border-top: none; }
+    .original-header .nav-links a {
+        display: inline-block; 
+        padding: 10px 0; 
+        color: var(--text-dark); text-transform: uppercase; font-size: 1.25em;
+        position: relative; 
+    }
+     .original-header .nav-links a .link-text::after { 
+        content: '';
+        position: absolute;
+        width: 100%;
+        transform: scaleX(0);
+        height: 2px;
+        bottom: -4px;
+        left: 0;
+        background-color: var(--secondary-color-orange); 
+        transform-origin: center;
+        transition: transform 0.3s ease-out;
+    }
+    .original-header .nav-links a:hover .link-text::after,
+    .original-header .nav-links a.active .link-text::after {
+        transform: scaleX(1);
+    }
+    .original-header .nav-links a:hover,
+    .original-header .nav-links a.active {
+        color: var(--secondary-color-orange);
+         background-color: transparent; 
+    }
+     .original-header .nav-links a:hover .dropdown-icon,
+    .original-header .nav-links a.active .dropdown-icon {
+        color: var(--secondary-color-orange);
+    }
+    
+    .new-hero-section.hero-slider-active {
+        height: 100vh; 
+        padding-top: 0; 
+    }
+    .new-hero-section.hero-slider-active .new-hero-content h1 {
+        font-size: 2em; 
+    }
+    .hero-slide-subtitle { font-size: 1em; margin-bottom: 20px; }
+    .hero-buttons {
+        flex-direction: column; gap: 15px; align-items: center; 
+    }
+    .btn-hero {
+        width: 70%; max-width: 280px;
+    }
+    .hero-slider-active .slider-nav { 
+        display: none; 
+    }
+
+    .upcoming-event-header { flex-direction: column; align-items: flex-start; text-align: left;}
+    .upcoming-event-header .btn { margin-top: 15px; }
+
+    .programs-slider-nav { display: none; } 
+
+    .newsletter-container { flex-direction: column; align-items: stretch; }
+    .newsletter-text { text-align: center; margin-bottom: 20px; }
+    .newsletter-form { flex-direction: column; }
+    .newsletter-form button { margin-top: 10px; }
+
+    .footer-container { grid-template-columns: 1fr; text-align: center; }
+    .footer-col h4::after { margin-left: auto; margin-right: auto; }
+    .social-links { text-align: center; }
+
+    .page-banner h1 { font-size: 2.2em; }
+    .page-banner p { font-size: 1em; }
+
+    .team-member-card p { min-height: auto; }
+    .ministry-blockquote { margin-left: 0; }
+
+    .sermon-container-grid { 
+        grid-template-columns: 1fr;
+    }
+     .sermon-video-area .video-player-wrapper {
+        padding-bottom: 56.25%; 
+    }
+}
+
+@media (max-width: 480px) {
+    .container { width: 95%; }
+    h1 { font-size: 2em; } 
+    .new-hero-section.hero-slider-active .new-hero-content h1 { font-size: 1.7em; } 
+    .page-banner h1 { font-size: 1.8em; } 
+
+    .logo { height: 35px !important; } 
+    .logo-worldpillars { height: 45px !important; }
+    
+    .hero-slide-subtitle { font-size: 0.9em; }
+    .btn-hero { width: 80%; }
+
+
+    .program-slide.active { flex-direction: column; }
+    .program-card { min-width: 100%; margin-bottom: 15px; }
+    .programs-events-slider-section .programs-slider-nav { display: block; } 
+}

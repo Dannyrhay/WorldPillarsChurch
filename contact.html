@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="icon" href="./images/logo2.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="original-header">
+        <div class="container header-container">
+            <div class="logo-container">
+                <img src="./images/logo2.png" alt="P TV Logo" class="logo logo-ptv">
+                <img src="./images/logo1.png" alt="World Pillars Logo" class="logo logo-worldpillars">
+                <p style="font-size: 20PX; color: rgb(0, 0, 0);font-weight: bolder;">WORLD PILLARS CHURCH</p>
+            </div>
+            <nav>
+                <button class="menu-toggle" id="mobile-menu" aria-label="Open navigation menu" aria-expanded="false">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links original-nav-links" id="nav-links">
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="./About.html">About</a></li>
+                    <li><a href="./Ministry.html">Ministry <i></i></a></li> 
+                    <li><a href="./sermon.html">Sermons <i></i></a></li>
+                    <li><a href="#pages">Pages <i class="fas fa-chevron-down dropdown-icon"></i></a></li>
+                    <li><a href="./contact.html" class="active">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-banner contact-banner"> 
+        <div class="container">
+            <h1>Contact us</h1>
+            <p>Our Church address and contact details. We'd love to hear from you!</p>
+        </div>
+    </section>
+
+    <section class="contact-form-section">
+        <div class="container">
+            <div class="contact-form-container">
+                <h2 class="section-title">Get in Touch</h2>
+                <form id="contactForm" action="https://formspree.io/f/mblovnrn" method="POST">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email ID</label>
+                        <input type="email" id="email" name="_replyto" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="6" required></textarea>
+                    </div>
+                    <input type="hidden" name="_subject" value="New Contact Form Submission from Church Website">
+                    
+                    <button type="submit" class="btn btn-primary btn-submit-message">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="map-section">
+        <div class="map-placeholder">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2234.094538768126!2d0.056162356181509825!3d5.717691523071433!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10207e17b96a0fad%3A0x6e094986172d2669!2sWorld%20Pillars%20Church%20(Dollarman)!5e0!3m2!1sen!2sgh!4v1748354980235!5m2!1sen!2sgh" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
+
+    <section id="newsletter" class="newsletter-section">
+        <div class="container newsletter-container">
+            <div class="newsletter-text">
+                <h3>SUBSCRIBE</h3>
+                <p>TO OUR NEWSLETTER</p>
+            </div>
+            <form class="newsletter-form"> <input type="email" placeholder="Enter email" required>
+                <button type="submit" class="btn btn-primary">SUBSCRIBE NOW <i class="fas fa-arrow-right"></i></button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-col">
+                <h4>ABOUT THE CHURCH</h4>
+                <p>For the word of God is living and active. Sharper than any double-edged sword, it penetrates even to dividing soul and spirit, joints and marrow; it judges the thoughts and attitudes.</p>
+            </div>
+            <div class="footer-col">
+                <h4>QUICK LINKS</h4>
+                <ul>
+                    <li><a href="index.html#upcoming-event">Upcoming events</a></li>
+                    <li><a href="index.html#ministries-overview">Ministries</a></li>
+                    <li><a href="./sermon.html">Recent Sermons</a></li> <li><a href="contact.html">Contact us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>OUR ADDRESS</h4>
+                <p>Catholic Church<br>121 King Street, Melbourne<br>Victoria 3000 Australia</p> 
+                <p>Phone: +61 3 8376 6284<br>Email: mail@catholicwebsite.com</p> 
+            </div>
+            <div class="footer-col">
+                <h4>CONNECT</h4>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>Copyright © 2024 All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
