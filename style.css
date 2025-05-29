@@ -29,7 +29,7 @@ html {
 
 img {
     max-width: 100%;
-    height: auto; /* This is key for maintaining aspect ratio */
+    height: auto; /* This is key for maintaining aspect ratio and preventing stretching */
     display: block;
     border-radius: 5px;
 }
@@ -70,14 +70,6 @@ a {
     text-decoration: none;
     color: var(--secondary-color-orange);
 }
-
-/* img rule is duplicated, keeping one */
-/* img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 5px;
-} */
 
 .btn {
     display: inline-block;
@@ -151,7 +143,7 @@ header.homepage-header {
     width: 100%;
     background-color: transparent;
     padding: 20px 0;
-    z-index: 999; /* Ensures header is above static page content but below fixed mobile menu */
+    z-index: 999;
     box-sizing: border-box;
 }
 
@@ -163,8 +155,8 @@ header.homepage-header {
 .homepage-header .logo-container {
     display: flex;
     align-items: center;
-    position: relative; /* Stacking context for logo text if needed */
-    z-index: 1003; /* Above general header content, but below mobile menu toggle and panel */
+    position: relative;
+    z-index: 1003;
 }
 .homepage-header .logo {
     height: 45px;
@@ -175,13 +167,10 @@ header.homepage-header {
 .homepage-header .logo-worldpillars {
     height: 55px;
 }
-.homepage-header nav {
-    /* Nav element itself */
-}
-/* Desktop Navigation Links for Homepage */
+.homepage-header nav {}
 .homepage-header .nav-links.homepage-nav-links {
     list-style: none;
-    display: flex; /* Ensures nav links are shown on desktop */
+    display: flex;
     margin: 0;
     padding: 0;
 }
@@ -200,30 +189,28 @@ header.homepage-header {
 }
 .homepage-header .nav-links.homepage-nav-links a .link-text {
     position: relative;
-    display: inline-block; /* Important for ::after to be relative to text width */
+    display: inline-block;
 }
-/* Underline for desktop homepage nav links - SWIPE EFFECT */
 .homepage-header .nav-links.homepage-nav-links a .link-text::after {
     content: '';
     position: absolute;
-    width: 100%; /* Takes width of the span.link-text */
-    transform: scaleX(0); /* Initially hidden */
+    width: 100%;
+    transform: scaleX(0);
     height: 2px;
-    bottom: -4px; /* Position below the text */
+    bottom: -4px;
     left: 0;
     background-color: var(--homepage-hero-highlight);
-    transform-origin: bottom right; /* Animation starts from the right */
+    transform-origin: bottom right;
     transition: transform 0.3s ease-out;
 }
 .homepage-header .nav-links.homepage-nav-links a:hover .link-text::after {
-    transform: scaleX(1); /* Animate to full width */
-    transform-origin: bottom left; /* Animation ends at the left, creating swipe */
+    transform: scaleX(1);
+    transform-origin: bottom left;
 }
 .homepage-header .nav-links.homepage-nav-links a:hover,
 .homepage-header .nav-links.homepage-nav-links a.active {
     color: var(--homepage-hero-highlight);
 }
-/* Active link also gets the underline, styled consistently with hover */
 .homepage-header .nav-links.homepage-nav-links a.active .link-text::after {
     transform: scaleX(1);
     transform-origin: bottom left;
@@ -247,7 +234,7 @@ header.original-header {
     padding: 10px 0;
     position: sticky;
     top: 0;
-    z-index: 1000; /* Standard z-index for sticky header */
+    z-index: 1000;
     border-bottom: 3px solid var(--background-medium);
 }
 .original-header .header-container {
@@ -260,7 +247,7 @@ header.original-header {
     display: flex;
     align-items: center;
     position: relative;
-    z-index: 1003; /* Consistent with homepage logo z-index logic */
+    z-index: 1003;
 }
 .original-header .logo {
     height: 50px;
@@ -269,7 +256,6 @@ header.original-header {
 .original-header .logo-worldpillars {
     height: 60px;
 }
-/* Desktop Navigation Links for Original Header */
 .original-header .nav-links.original-nav-links {
     list-style: none;
     display: flex;
@@ -334,8 +320,12 @@ header.original-header {
     left: 0;
     width: 100%;
     height: 100%;
-    background-size: cover;
-    background-position: center;
+    background-size: cover; /* This makes the image cover the area, cropping if needed. */
+    /* To make the entire image visible without cropping (may leave empty space): */
+    /* background-size: contain; */
+    /* background-repeat: no-repeat; */ /* Add this if using 'contain' */
+    /* background-color: #000; */ /* Add a fallback color if using 'contain' and image doesn't fill */
+    background-position: center; /* Adjust if the important part of image is not centered e.g., 'top center' or '20% 50%' */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -457,14 +447,13 @@ header.original-header {
 }
 
 .menu-toggle {
-    display: none; /* Hidden by default, shown in media query */
+    display: none;
     background: none;
     border: none;
     font-size: 1.8em;
     cursor: pointer;
     padding: 10px;
-    /* z-index will be set in media queries for mobile context */
-    position: relative; /* Or fixed depending on mobile styling */
+    position: relative;
     line-height: 1;
 }
 .homepage-header .menu-toggle {
@@ -486,10 +475,13 @@ header.original-header {
     text-align: center;
     position: relative;
     color: var(--text-light);
-    background-attachment: fixed;
+    background-attachment: fixed; /* Note: background-attachment: fixed can have performance issues or behave differently on mobile. */
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover; /* This makes the image cover the area, cropping if needed. */
+    /* To make the entire image visible without cropping (may leave empty space): */
+    /* background-size: contain; */
+    /* background-color: #333; */ /* Add a fallback color if using 'contain' */
     min-height: 300px;
     display: flex;
     align-items: center;
@@ -673,10 +665,13 @@ header.original-header {
     text-align: center;
     position: relative;
     background-image: url('./images/bible quote1.jpg');
-    background-attachment: fixed;
+    background-attachment: fixed; /* Note: background-attachment: fixed can have issues on mobile. */
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover; /* This makes the image cover the area, cropping if needed. This is likely why it looks "zoomed in" or "not fully visible" on mobile. */
+    /* To make the entire image visible without cropping (may leave empty space): */
+    /* background-size: contain; */
+    /* background-color: #000; */ /* Add a fallback color if using 'contain', to fill space not covered by image */
     color: var(--text-light);
 }
 .bible-quotes-slider-section::before {
@@ -686,7 +681,7 @@ header.original-header {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.6); /* This overlay helps with text readability */
     z-index: 1;
 }
 .bible-quotes-slider-section .container {
@@ -702,7 +697,7 @@ header.original-header {
 .quotes-slider {
     position: relative;
     overflow: hidden;
-    min-height: 150px;
+    min-height: 150px; /* Adjust if needed, especially if using background-size: contain */
     max-width: 800px;
     margin: 0 auto;
 }
@@ -756,8 +751,7 @@ header.original-header {
     opacity: 1;
 }
 
-/* ... (Rest of the CSS for other sections: Upcoming Event, Programs, Our Ministries, etc. remains the same) ... */
-/* Upcoming Event Section (Existing) */
+/* Upcoming Event Section */
 .upcoming-event-section {
     padding: 60px 0;
     background-color: #fff;
@@ -793,8 +787,11 @@ header.original-header {
 }
 .event-card img {
     width: 100%;
-    height: 200px;
-    object-fit: cover;
+    height: 200px; /* Fixed height for consistent card size */
+    object-fit: cover; /* Ensures image covers the 200px height, maintains aspect ratio, crops if necessary. */
+    /* If 'not visible' means too much is cropped, alternatives: */
+    /* 1. object-fit: contain; background-color: #eee; (shows whole image, may leave empty space) */
+    /* 2. On mobile, set height: auto; (see media query below) */
     border-radius: 5px;
     margin-bottom: 15px;
 }
@@ -815,7 +812,7 @@ header.original-header {
     text-decoration: underline;
 }
 
-/* Programs & Events Slider Section (Existing) */
+/* Programs & Events Slider Section */
 .programs-events-slider-section {
     padding: 60px 0;
     background-color: var(--background-medium);
@@ -892,7 +889,7 @@ header.original-header {
 .programs-slider-nav.programs-prev { left: 10px; }
 .programs-slider-nav.programs-next { right: 10px; }
 
-/* Our Ministries Section (Existing & Reused) */
+/* Our Ministries Section */
 .our-ministries-section {
     padding: 60px 0;
     background-color: var(--background-light);
@@ -913,8 +910,11 @@ header.original-header {
 }
 .ministry-card img {
     width: 100%;
-    height: 120px;
-    object-fit: cover;
+    height: 120px; /* Fixed height */
+    object-fit: cover; /* Similar to event-card img, consider alternatives if cropping is an issue */
+    /* Alternatives: */
+    /* 1. object-fit: contain; background-color: #eee; */
+    /* 2. On mobile, set height: auto; (see media query below) */
     border-radius: 5px;
     margin-bottom: 15px;
 }
@@ -929,7 +929,7 @@ header.original-header {
     min-height: 60px;
 }
 
-/* Newsletter Section (Shared) */
+/* Newsletter Section */
 .newsletter-section {
     background-color: var(--primary-color-purple);
     color: var(--text-light);
@@ -968,7 +968,7 @@ header.original-header {
     white-space: nowrap;
 }
 
-/* Footer (Shared) */
+/* Footer */
 footer {
     background-color: var(--footer-bg);
     color: #ccc;
@@ -1086,20 +1086,6 @@ footer {
     padding-bottom: 10px;
     border-bottom: 2px solid var(--secondary-color-orange);
 }
-/* .sermon-placeholder-img rule is duplicated, keeping one in recent-sermons-sidebar */
-/* .sermon-placeholder-img {
-    width: 100%;
-    height: 148px;
-    background-color: #e0e0e0;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #888;
-    font-size: 0.9em;
-    border: 1px dashed #ccc;
-} */
 .sidebar .sermon-item {
     margin-bottom: 15px;
     padding-bottom: 15px;
@@ -1150,8 +1136,11 @@ footer {
 }
 .team-member-card img {
     width: 100%;
-    height: 200px;
-    object-fit: cover;
+    height: 200px; /* Fixed height */
+    object-fit: cover; /* Similar to event-card img, consider alternatives if cropping is an issue */
+    /* Alternatives: */
+    /* 1. object-fit: contain; background-color: #eee; */
+    /* 2. On mobile, set height: auto; (see media query below) */
     border-radius: 8px;
     margin-bottom: 20px;
     border: 3px solid var(--background-light);
@@ -1193,7 +1182,9 @@ footer {
     width: 100%;
     height: auto;
     max-height: 600px;
-    object-fit: cover;
+    object-fit: cover; /* If max-height is reached, this will ensure the area is covered. */
+    /* For this setup (width: 100%, height: auto, max-height), object-fit: scale-down or object-fit: initial might also be suitable */
+    /* if you want to avoid any cropping and just ensure the image fits and respects aspect ratio. */
     margin-bottom: 30px;
     border-radius: 8px;
 }
@@ -1258,14 +1249,6 @@ footer {
         min-width: 220px;
     }
 
-    /* img rule already global, no need to repeat here */
-    /* img {
-        max-width: 100%;
-        height: auto; 
-        display: block;
-        border-radius: 5px;
-    } */
-
     .about-container-grid, .ministry-container-grid, .sermon-container-grid {
         grid-template-columns: 1fr;
     }
@@ -1285,7 +1268,6 @@ footer {
         font-size: 0.9em;
     }
 
-    /* Hide desktop nav links, show hamburger */
     .homepage-header .nav-links.homepage-nav-links,
     .original-header .nav-links.original-nav-links {
         display: none;
@@ -1294,48 +1276,32 @@ footer {
 }
 
 @media (max-width: 668px) { /* Mobile specific */
-    /* Mobile Menu Styling */
-    /* .html p was likely a typo or overly broad, commenting out. If specific p tags need styling, target them precisely. */
-    /* .html p{
-        font-size: 1em;
-    } */
-
-    /* img rule already global */
-    /* img {
-        max-width: 100%;
-        height: auto; 
-        display: block;
-        border-radius: 5px;
-    } */
-
-    .nav-links { /* General style for the mobile navigation panel */
-        display: none; /* Initially hidden, shown by .active class */
+    .nav-links {
+        display: none;
         flex-direction: column;
         width: 100%;
-        position: fixed; /* Fixed position to cover the screen */
+        position: fixed;
         left: 0;
         top: 0;
-        height: 100vh; /* Full viewport height */
+        height: 100vh;
         box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-        z-index: 1004; /* MODIFIED: Ensures nav panel is above logo (1003) but below menu toggle (1005) */
-        padding-top: 0; /* Adjust as needed, e.g., for header height if menu doesn't cover header */
+        z-index: 1004;
+        padding-top: 0;
         box-sizing: border-box;
-        overflow-y: auto; /* Scroll if content exceeds viewport height */
-        justify-content: center; /* Center links vertically */
-        align-items: center; /* Center links horizontally */
+        overflow-y: auto;
+        justify-content: center;
+        align-items: center;
     }
-    .nav-links.active { display: flex !important; } /* Makes the menu visible */
+    .nav-links.active { display: flex !important; }
 
-    /* Homepage Mobile Menu (Dark overlay) */
     .homepage-header .nav-links.active {
-        background-color: rgba(20, 20, 20, 0.98); /* Dark background for homepage mobile menu */
+        background-color: rgba(20, 20, 20, 0.98);
     }
-    .homepage-header .menu-toggle { /* Hamburger/Close icon for homepage */
-        position: fixed; /* Fixed position relative to viewport */
+    .homepage-header .menu-toggle {
+        position: fixed;
         top: 20px;
         right: 20px;
-        z-index: 1005; /* MODIFIED: Ensures toggle is above nav panel (1004) and logo (1003) */
-        /* color: var(--text-light); is inherited */
+        z-index: 1005;
     }
     .homepage-header .nav-links li {
         margin: 15px 0;
@@ -1377,19 +1343,17 @@ footer {
         color: var(--homepage-hero-highlight);
     }
 
-    /* Original Pages Mobile Menu (Light overlay) */
     .original-header .nav-links.active {
-        background-color: rgba(255, 255, 255, 0.99); /* Light background for other pages' mobile menu */
+        background-color: rgba(255, 255, 255, 0.99);
     }
-    .original-header .menu-toggle { /* Hamburger/Close icon for original header pages */
-        position: fixed; /* Fixed position relative to viewport */
-        top: 10px; /* Adjusted top/right for potentially different header height/layout */
-        right: 15px; /* Adjusted for consistency, ensure it doesn't overlap with scrollbars if any */
-        z-index: 1005; /* MODIFIED: Ensures toggle is above nav panel (1004) and logo (1003) */
-        /* color: var(--text-dark); is inherited */
+    .original-header .menu-toggle {
+        position: fixed;
+        top: 10px;
+        right: 15px;
+        z-index: 1005;
     }
     .original-header .menu-toggle i.fa-times {
-        color: var(--text-dark); /* Ensure close icon color is correct on light background */
+        color: var(--text-dark);
     }
     .original-header .nav-links li {
         margin: 15px 0;
@@ -1432,7 +1396,7 @@ footer {
 
     .new-hero-section.hero-slider-active {
         height: 100vh;
-        padding-top: 0; /* Ensure hero content aligns well when header is fixed/absolute */
+        padding-top: 0;
     }
     .new-hero-section.hero-slider-active .new-hero-content h1 {
         font-size: 2em;
@@ -1445,13 +1409,34 @@ footer {
         width: 70%; max-width: 280px;
     }
     .hero-slider-active .slider-nav {
-        display: none; /* Hide slider arrows on small mobile */
+        display: none;
     }
 
     .upcoming-event-header { flex-direction: column; align-items: flex-start; text-align: left;}
     .upcoming-event-header .btn { margin-top: 15px; }
 
-    .programs-slider-nav { display: none; } /* Hide program slider arrows on small mobile */
+    /* Mobile specific adjustments for card images if 'object-fit: cover' is too aggressive */
+    /* Option 1: Change to contain (shows whole image, might have letterboxing) */
+    /*
+    .event-card img,
+    .ministry-card img,
+    .team-member-card img {
+        object-fit: contain;
+        background-color: #f0f0f0; // Add a light background for any empty space
+    }
+    */
+    /* Option 2: Change height to auto (cards might become variable height) */
+    /*
+    .event-card img,
+    .ministry-card img,
+    .team-member-card img {
+        height: auto;
+        object-fit: initial; // or just remove object-fit as it's less relevant
+    }
+    */
+
+
+    .programs-slider-nav { display: none; }
 
     .newsletter-container { flex-direction: column; align-items: stretch; }
     .newsletter-text { text-align: center; margin-bottom: 20px; }
@@ -1472,29 +1457,17 @@ footer {
         grid-template-columns: 1fr;
     }
     .sermon-video-area .video-player-wrapper {
-        padding-bottom: 56.25%; /* Maintain 16:9 aspect ratio */
+        padding-bottom: 56.25%;
     }
 }
 
 @media (max-width: 250px) { /* Very small devices */
-
-    /* .logo-container p was likely a typo or for a specific element not present in header */
-    /* .logo-container p { font-size: 0.2em; } */
-
-    /* img rule already global */
-    /* img {
-        max-width: 100%;
-        height: auto; 
-        display: block;
-        border-radius: 5px;
-    } */
-
-    .container { width: 100%; padding-left: 10px; padding-right: 10px; } /* Ensure some padding */
+    .container { width: 100%; padding-left: 10px; padding-right: 10px; }
     h1 { font-size: 2em; }
     .new-hero-section.hero-slider-active .new-hero-content h1 { font-size: 1.7em; }
     .page-banner h1 { font-size: 1.8em; }
 
-    .homepage-header .logo { height: 35px !important; } /* Adjust logo size */
+    .homepage-header .logo { height: 35px !important; }
     .homepage-header .logo-worldpillars { height: 45px !important; }
     .original-header .logo { height: 35px !important; }
     .original-header .logo-worldpillars { height: 45px !important; }
@@ -1505,5 +1478,5 @@ footer {
 
     .program-slide.active { flex-direction: column; }
     .program-card { min-width: 100%; margin-bottom: 15px; }
-    .programs-events-slider-section .programs-slider-nav { display: block; } /* Re-show if needed, or keep hidden */
+    .programs-events-slider-section .programs-slider-nav { display: block; }
 }
